@@ -294,8 +294,8 @@ class Ui_MainWindow(object):
         self.track_name.clear()
         track_uid=self.track_uid.toPlainText().strip()
         self.track_uid.clear()
-        track_query="""SELECT status,current,last,percentage from package_details where uid = %s and uid in (select uid from order_details where uid=%s and name =%s)"""
-        track_tuple=(track_uid,track_uid,track_name)
+        track_query="""SELECT status,current,last,percentage from package_details where uid in (select uid from order_details where uid=%s and name =%s)"""
+        track_tuple=(track_uid,track_name)
         self.mycursor.execute(track_query,track_tuple)
         trackingdeets=self.mycursor.fetchall()
         if len(trackingdeets)==0:
